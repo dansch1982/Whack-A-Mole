@@ -19,13 +19,18 @@ for (const hole of holes) {
 function loop() {
     const element = document.querySelector('.timeleft b')
     const secondsLeft = element.textContent.substring(0, element.textContent.length - 1)
-    const whacked = document.querySelector('.moleswhacked b').textContent
+    const whacked = document.querySelector('.moleswhacked b')
     if (secondsLeft <= 0) {
-        const element = document.querySelector('.mole')
-        if (element) {
-            element.classList.remove('mole')
+        if (document.querySelector('.mole')) {
+            document.querySelector('.mole').classList.remove('mole')
         }
-        return alert(`Slut på tid! Du lyckades slå ${whacked} mulvadar.`)
+        alert(`Slut på tid! Du lyckades slå ${whacked.textContent} mulvadar.`)
+        if (confirm('Spela en gång till?')) {
+            element.textContent = 60 + "s"
+            whacked.textContent = 0
+            return loop();
+        }
+        return        
     }
     const index = Math.floor(Math.random() * holes.length)
     setTimeout(() => {
@@ -33,7 +38,7 @@ function loop() {
             holes[index].classList.add("mole")
             setTimeout(() => {
                 holes[index].classList.remove("mole")
-            }, appearance - whacked * 25);
+            }, appearance - whacked.textContent * 25);
         }
         element.textContent = secondsLeft - 1 + "s"
         loop();
