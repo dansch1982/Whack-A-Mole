@@ -10,8 +10,7 @@ for (const hole of holes) {
             setTimeout(() => {
                 this.classList.toggle('hit')
             }, 800);
-            const element = document.querySelector('.moleswhacked b')
-            element.textContent++
+            document.querySelector('.moleswhacked b').textContent++
         }
     });
 };
