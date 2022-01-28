@@ -7,26 +7,26 @@ for (const hole of holes) {
         if (this.classList.contains('mole')) {
             this.classList.remove('mole')
             this.classList.toggle('hit')
-            setTimeout(() => {
-                this.classList.toggle('hit')
-            }, 800);
-            document.querySelector('.moleswhacked b').textContent++
+            this.addEventListener('animationend', () => {
+            this.classList.toggle('hit')
+            })
+            document.querySelector('.moleswhackedElement b').textContent++
         }
     });
 };
 
 function loop() {
-    const element = document.querySelector('.timeleft b')
-    const secondsLeft = element.textContent.substring(0, element.textContent.length - 1)
-    const whacked = document.querySelector('.moleswhacked b')
+    const timeElement = document.querySelector('.timeleft b')
+    const secondsLeft = timeElement.textContent.substring(0, timeElement.textContent.length - 1)
+    const whackedElement = document.querySelector('.moleswhackedElement b')
     if (secondsLeft <= 0) {
         if (document.querySelector('.mole')) {
             document.querySelector('.mole').classList.remove('mole')
         }
-        alert(`Slut på tid! Du lyckades slå ${whacked.textContent} mulvadar.`)
+        alert(`Slut på tid! Du lyckades slå ${whackedElement.textContent} mulvadar.`)
         if (confirm('Spela en gång till?')) {
-            element.textContent = 60 + "s"
-            whacked.textContent = 0
+            timeElement.textContent = 60 + "s"
+            whackedElement.textContent = 0
             return loop();
         }
         return        
@@ -37,9 +37,9 @@ function loop() {
             holes[index].classList.add("mole")
             setTimeout(() => {
                 holes[index].classList.remove("mole")
-            }, appearance - whacked.textContent * 25);
+            }, appearance - whackedElement.textContent * 25);
         }
-        element.textContent = secondsLeft - 1 + "s"
+        timeElement.textContent = secondsLeft - 1 + "s"
         loop();
     }, 1000);
 }
