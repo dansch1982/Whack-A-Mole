@@ -10,7 +10,7 @@ for (const hole of holes) {
             this.addEventListener('animationend', () => {
             this.classList.toggle('hit')
             })
-            document.querySelector('.moleswhackedElement b').textContent++
+            document.querySelector('.moleswhacked b').textContent++
         }
     });
 };
@@ -18,7 +18,7 @@ for (const hole of holes) {
 function loop() {
     const timeElement = document.querySelector('.timeleft b')
     const secondsLeft = timeElement.textContent.substring(0, timeElement.textContent.length - 1)
-    const whackedElement = document.querySelector('.moleswhackedElement b')
+    const whackedElement = document.querySelector('.moleswhacked b')
     if (secondsLeft <= 0) {
         if (document.querySelector('.mole')) {
             document.querySelector('.mole').classList.remove('mole')
